@@ -22,4 +22,5 @@ const Article = connection.define('articles', {
 CategoryModel.hasMany(Article);// tem muitos
 Article.belongsTo(CategoryModel); // pertence a 
 
+
 module.exports = Article;
