@@ -4,6 +4,15 @@ const body_Parser = require('body-parser');
 const database = require('./database/database_creation');
 const connection = require("./database/database");
 
+//controllers
+const categoriesController = require('./categories/CategoriesController');
+const articlesController = require('./articles/ArticlesController');
+
+//models
+const Article = require('./articles/ArticleModel');
+const Category = require('./categories/CategoryModel');
+
+
 app.set('view engine', 'ejs');
 
 //static 
@@ -20,9 +29,13 @@ connection
     .authenticate()
     .then(()=>{
         console.log("conexão feita com sucesso");
-    }).catch((error) =>{
+    })
+    .catch((error) =>{
         console.log("error -->", error);
     });
+
+app.use('/', categoriesController);
+
 
 app.get('/', (req, res) =>{
     res.render('./index');
