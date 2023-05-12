@@ -1,7 +1,6 @@
 const express = require('express'); 
 const app = express();
 const body_Parser = require('body-parser');
-const database = require('./database/database_creation');
 const connection = require("./database/database");
 
 //controllers
@@ -9,8 +8,11 @@ const categoriesController = require('./categories/CategoriesController');
 const articlesController = require('./articles/ArticlesController');
 
 //models
+const database = require('./database/database_creation');
 const Article = require('./articles/ArticleModel');
 const Category = require('./categories/CategoryModel');
+
+app.use(express.static('public'))
 
 
 app.set('view engine', 'ejs');
