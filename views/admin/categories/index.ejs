@@ -2,13 +2,17 @@
 <%- include('../../partials/navbar.ejs') %>
 
 <div class="container" style="top:60px; position:relative;">
+    <hr>
+    <h2>Categorias</h2>
+    <a class="btn btn-success" href="/admin/categories/new" >Criar categoria</a>
+    <hr>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Título</th>
                 <th>Slug</th>
-                <th>Ações</th>
+                <th style="width: 166px;">Ações</th>
             </tr>
             
         </thead>
@@ -18,8 +22,9 @@
                 <th><%= category.id%></th>
                 <th><%= category.title%></th>
                 <th><%= category.slug%></th>
-                <th style="align-items: center;">
-                    <button class="btn btn-danger"  >Deletar</button>
+                <th>
+                    <button class="btn btn-warning">Editar</button>
+                    <button class="btn btn-danger" >Deletar</button>
                 </th>   
             </tr>
             <% }) %>
