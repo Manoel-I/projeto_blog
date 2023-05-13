@@ -3,16 +3,16 @@
 
 <div class="container" style="top:60px; position:relative;">
     <hr>
-    <h2>Categorias</h2>
-    <a class="btn btn-success" href="/admin/categories/new" >Criar categoria</a>
+    <h2>Categories</h2>
+    <a class="btn btn-success" href="/admin/categories/new" >New Category</a>
     <hr>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Título</th>
+                <th>Title</th>
                 <th>Slug</th>
-                <th style="width: 166px;">Ações</th>
+                <th style="width: 166px;">Actions</th>
             </tr>
             
         </thead>
@@ -23,8 +23,12 @@
                 <th><%= category.title%></th>
                 <th><%= category.slug%></th>
                 <th>
-                    <button class="btn btn-warning">Editar</button>
-                    <button class="btn btn-danger" >Deletar</button>
+                    <button class="btn btn-warning">Edit</button>
+                    <form method="POST" action="/categories/delete">
+                        <input type="hidden" name="id" value="<%= category.id %>">
+                        <button class="btn btn-danger" >Delete</button>
+                    </form>
+                    
                 </th>   
             </tr>
             <% }) %>
