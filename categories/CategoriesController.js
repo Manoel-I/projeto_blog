@@ -3,12 +3,9 @@ const router = express.Router();
 const Category = require('./CategoryModel');
 const slugify = require('slugify');
 
- 
-
-
- router.get("/admin/categories/new", (req, res)=>{
-    res.render('admin/categories/new');
- });
+router.get("/admin/categories/new", (req, res)=>{
+   res.render('admin/categories/new');
+});
 
 router.post('/categories/save', (req, res)=>{
    var title = req.body.title;
@@ -33,6 +30,25 @@ router.get("/admin/categories", (req, res)=>{
    
 });
 
+router.post("/categories/delete", (req , res)=>{
+   var id = req.body.id;
+   if(id != undefined){
+      if(!isNaN(id)){
+         Category.destroy({
+            where:{
+               id : id
+            }
+         }).then(()=>{
+            res.redirect("/admin/categories");
+         });
+
+      }else{ // se não for um numero
+         res.redirect("/admin/categories");
+      }
+   }else{// se for undefined
+      res.redirect("/admin/categories");
+   }
+});
 
 
  module.exports = router;
