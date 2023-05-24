@@ -23,8 +23,8 @@
                 <th><%= category.title%></th>
                 <th><%= category.slug%></th>
                 <th>
-                    <button class="btn btn-warning">Edit</button>
-                    <form method="POST" action="/categories/delete" onsubmit="submit_confirm(event, this)">
+                    <a href="/admin/categories/edit/<%=category.id%>" class="btn btn-warning">Edit</a>
+                    <form method="POST" action="/categories/delete" style="display: inline-block" onsubmit="submit_confirm(event, this)">
                         <input type="hidden" name="id" value="<%= category.id %>" >
                         <button class="btn btn-danger" >Delete</button>
                     </form>
