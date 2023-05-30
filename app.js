@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const body_Parser = require('body-parser');
 const connection = require("./database/database");
+const path = require('path');
 
 //controllers
 const categoriesController = require('./categories/CategoriesController');
@@ -19,6 +20,8 @@ app.set('view engine', 'ejs');
 
 //static 
 app.use(express.static('public'));
+//app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+
 
 //body parser
 app.use(body_Parser.urlencoded({extended
@@ -36,7 +39,7 @@ connection
         console.log("error -->", error);
     });
 
-app.use('/', categoriesController);
+app.use('/', categoriesController, articlesController); // seta os controllers 
 
 
 app.get('/', (req, res) =>{
