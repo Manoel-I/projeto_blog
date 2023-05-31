@@ -13,6 +13,14 @@
                 <br>
                 <textarea class="form-control" name="body" id="body" placeholder="Write your article here!"></textarea>
                 <br>
+                <label>Category:</label>
+                <br>
+                <select class="form-control" name="category">
+                    <% category.forEach( (category)=>{%>
+                        <option value="<%= category.id %>"><%=category.title%></option>
+                    <% }) %>
+                </select>
+                <br>
                 <button class="btn btn-success" style="left: 40%; position: relative;" data-toggle="modal" data-target="#exampleModal">Register</button>
             </form>
         </div>
