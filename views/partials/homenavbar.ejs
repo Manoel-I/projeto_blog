@@ -1,11 +1,15 @@
-<nav class="navbar navbar-expend-lg" style="background-color: #969696; height: 58px"  >
-    <a href="/">
-       <img src="/img/logoblog_02.jpg" width="150px" height="100px" >
-    </a>
- </nav>
- 
- <ul class="navbar-nav mr-auto" id="homenavbar">
-    <li class="nav-item">
-        <a class="nav-link" href="/" >Home</a>
-    </li>
- </ul>
+<nav class="navbar navbar-expand-lg" style="background-color: #969696; height: 58px">
+   <a href="/">
+      <img src="/img/logoblog_02.jpg" width="150px" height="100px">
+   </a>
+   <ul class="navbar-nav ml-auto" style="display: flex;">
+      <li class="nav-item">
+         <a class="nav-link" href="/" style="color:white">Home</a>
+      </li>
+      <% category.forEach(category => { %>
+      <li class="nav-item">
+         <a class="nav-link" href="/" style="color:white"><%= category.title %></a>
+      </li>
+      <% }) %>
+   </ul>
+</nav>
