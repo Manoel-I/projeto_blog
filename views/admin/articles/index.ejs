@@ -1,6 +1,50 @@
 <%- include('../../partials/header.ejs') %>
 <%- include('../../partials/navbar.ejs') %>
 
-<body></body>
+<div class="container" style="top:60px; position:relative;">
+    <hr>
+    <h2>Articles</h2>
+    <a class="btn btn-success" href="/admin/articles/new" >New Article</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="width: 120px;">Category ID</th>
+                <th style="width: 120px;">Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th style="width: 166px;">Actions</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            <% article.forEach(article =>{ %>
+            <tr>
+                <th><%= article.categoryId%></th>
+                <th><%= article.id%></th>
+                <th><%= article.title%></th>
+                <th><%= article.slug%></th>
+                <th>
+                    <a href="/admin/articles/edit/<%=article.id%>" class="btn btn-warning">Edit</a>
+                    <form method="POST" action="/articles/delete" style="display: inline-block" onsubmit="submit_confirm(event, this)">
+                        <input type="hidden" name="id" value="<%= article.id %>" >
+                        <button class="btn btn-danger" >Delete</button>
+                    </form>
+                    
+                </th>   
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<script>
+    function submit_confirm(event, form){
+        event.preventDefault();
+        let decision = confirm("Do you want to delete?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
 
 <%- include('../../partials/footer.ejs') %>

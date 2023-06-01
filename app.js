@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const body_Parser = require('body-parser');
 const connection = require("./database/database");
-const path = require('path');
+//const path = require('path');
 
 //controllers
 const categoriesController = require('./categories/CategoriesController');
@@ -13,7 +13,7 @@ const database = require('./database/database_creation');
 const Article = require('./articles/ArticleModel');
 const Category = require('./categories/CategoryModel');
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 
 app.set('view engine', 'ejs');
@@ -24,9 +24,7 @@ app.use(express.static('public'));
 
 
 //body parser
-app.use(body_Parser.urlencoded({extended
-    
-    : false}));
+app.use(body_Parser.urlencoded({extended: false}));
 app.use(body_Parser.json());
 
 //database
