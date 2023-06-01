@@ -41,7 +41,39 @@ app.use('/', categoriesController, articlesController); // seta os controllers
 
 
 app.get('/', (req, res) =>{
-    res.render('./index');
+    Article.findAll({
+        order : [
+            ['id', 'DESC']
+        ]
+    }).then(article =>{
+        Category.findAll().then(category =>{
+            res.render('index', {article : article, category : category});
+        });  
+    });
+});
+
+
+app.get("/:slug",(req, res) =>{
+    console.log("slug --->", req.params.slug);
+    var slug = req.params.slug;
+
+    Article.findOne({
+        where :{
+            slug : slug
+        }
+    }).then(article =>{
+        console.log(article);
+        if(article != undefined){
+            Category.findAll().then(category =>{
+                res.render('article', {article : article, category : category});
+            });  
+        }else{
+            res.redirect('/');
+        }
+    }).catch(error =>{
+        console.log("erro ---> ",error);
+        res.redirect('/');
+    })
 });
 
 
