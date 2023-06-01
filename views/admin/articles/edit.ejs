@@ -8,10 +8,10 @@
             <h2 style="position:relative;">Article Registration:</h2>
         </div>
         <div class="card-body">
-            <form method="POST" action="/articles/save">
-                <input class="form-control form-control-lg" type="text" name="title" placeholder="Article name:">
+            <form method="POST" action="/articles/update">
+                <input class="form-control form-control-lg" type="text" name="title" placeholder="Article name:" value="<%= article.title%>"></input>
                 <br>
-                <textarea class="form-control" name="body" id="body" placeholder="Write your article here!"></textarea>
+                <textarea class="form-control" name="body" id="body" placeholder="Write your article here!"><%= article.body %></textarea>
                 <br>
                 <label>Category:</label>
                 <br>
@@ -21,14 +21,13 @@
                     <% }) %>
                 </select>
                 <br>
-                <button class="btn btn-success" style="left: 40%; position: relative;" data-toggle="modal" data-target="#exampleModal">Register</button>
+                <button class="btn btn-success" style="left: 40%; position: relative;" >Register</button>
             </form>
         </div>
     </div>
 </div>
 
 
+
 <%- include('../../partials/tinymce.ejs') %>
-
 <%- include('../../partials/footer.ejs') %>
-
