@@ -54,7 +54,6 @@ app.get('/', (req, res) =>{
 
 
 app.get("/:slug",(req, res) =>{
-    console.log("slug --->", req.params.slug);
     var slug = req.params.slug;
 
     Article.findOne({
@@ -62,7 +61,6 @@ app.get("/:slug",(req, res) =>{
             slug : slug
         }
     }).then(article =>{
-        console.log(article);
         if(article != undefined){
             Category.findAll().then(category =>{
                 res.render('article', {article : article, category : category});
@@ -76,6 +74,27 @@ app.get("/:slug",(req, res) =>{
     })
 });
 
+
+app.get('/category/:slug', (req, res)=>{
+    var slug = req.params.slug;
+    Category.findOne({
+        where :{
+            slug : slug
+        },
+        include :[{model : Article}]
+    }).then(category =>{
+        if(category != undefined){
+            Category.findAll().then(categories =>{
+                res.render('index', {article : category.articles , category : categories});
+            });
+        }else{
+            res.redirect('/');
+        }
+    }).catch(error =>{
+        console.log("error -->",error);
+        res.redirect('/');
+    })
+})
 
 app.listen(8080, ()=>{
     console.log("on server");

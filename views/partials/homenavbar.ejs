@@ -8,7 +8,7 @@
       </li>
       <% category.forEach(category => { %>
       <li class="nav-item">
-         <a class="nav-link" href="/" style="color:white"><%= category.title %></a>
+         <a class="nav-link" href="/category/<%=category.slug%>" style="color:white"><%= category.title %></a>
       </li>
       <% }) %>
    </ul>
