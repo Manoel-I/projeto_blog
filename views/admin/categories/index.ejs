@@ -1,6 +1,5 @@
 <%- include('../../partials/header.ejs') %>
 <%- include('../../partials/navbar.ejs') %>
-
 <div class="container" style="top:60px; position:relative;">
     <hr>
     <h2>Categories</h2>
@@ -14,7 +13,6 @@
                 <th>Slug</th>
                 <th style="width: 166px;">Actions</th>
             </tr>
-            
         </thead>
         <tbody>
             <% categories.forEach(category =>{ %>
@@ -28,7 +26,6 @@
                         <input type="hidden" name="id" value="<%= category.id %>" >
                         <button class="btn btn-danger" >Delete</button>
                     </form>
-                    
                 </th>   
             </tr>
             <% }) %>
@@ -44,6 +41,5 @@
         }
     }
 </script>
-
 <%- include('../../partials/footer.ejs') %>
 
