@@ -1,7 +1,5 @@
 <%- include('../../partials/header.ejs') %>
-
 <%- include('../../partials/navbar.ejs') %>
-
 <div class="container" style="top:60px; position:relative;">
     <div class="card">
         <div class="card-header">
@@ -17,7 +15,11 @@
                 <br>
                 <select class="form-control" name="category">
                     <% category.forEach( (category)=>{%>
-                        <option value="<%= category.id %>"><%=category.title%></option>
+                        <% if(category.id == article.categoryId){ %>
+                            <option value="<%= category.id %>" selected><%=category.title%></option>
+                        <%}else{%>
+                            <option value="<%= category.id %>"><%=category.title%></option>
+                        <%}%>
                     <% }) %>
                 </select>
                 <br>
@@ -27,8 +29,5 @@
         </div>
     </div>
 </div>
-
-
-
 <%- include('../../partials/tinymce.ejs') %>
 <%- include('../../partials/footer.ejs') %>

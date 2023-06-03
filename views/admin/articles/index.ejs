@@ -1,6 +1,5 @@
 <%- include('../../partials/header.ejs') %>
 <%- include('../../partials/navbar.ejs') %>
-
 <div class="container" style="top:60px; position:relative;">
     <hr>
     <h2>Articles</h2>
@@ -8,16 +7,13 @@
     <hr>
     <table class="table table-bordered">
         <thead>
-            <tr>
-                
+            <tr>  
                 <th style="width: 120px;">Id</th>
                 <th>Title</th>
                 <th>Slug</th>
                 <th style="width: 200px;">Category</th>
                 <th style="width: 166px;">Actions</th>
-
-            </tr>
-            
+            </tr>   
         </thead>
         <tbody>
             <% article.forEach(article =>{ %>
@@ -31,8 +27,7 @@
                     <form method="POST" action="/articles/delete" style="display: inline-block" onsubmit="submit_confirm(event, this)">
                         <input type="hidden" name="id" value="<%= article.id %>" >
                         <button class="btn btn-danger" >Delete</button>
-                    </form>
-                    
+                    </form>   
                 </th>   
             </tr>
             <% }) %>
@@ -48,5 +43,4 @@
         }
     }
 </script>
-
 <%- include('../../partials/footer.ejs') %>
