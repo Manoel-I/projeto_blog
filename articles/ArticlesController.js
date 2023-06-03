@@ -3,6 +3,7 @@ const router = express.Router();
 const Article = require('./ArticleModel');
 const Category = require('../categories/CategoryModel');
 const slugify = require('slugify');
+const { json } = require('sequelize');
 
 router.get('/admin/articles', (req, res)=>{
    Article.findAll({
@@ -95,15 +96,15 @@ router.get('/articles/page/:num', (req, res)=>{
    if(isNaN(page) || page == 1){
       offset = 0;
    }else{
-      offset = parseInt(page) * 5;
+      offset = parseInt(page -1) * 4;
    }
    
    Article.findAndCountAll({
-      limit : 5,
+      limit : 4,
       offset : offset
    }).then(articles =>{
       var next;
-      if(offset + 5 >= articles.count){
+      if(offset + 4 >= articles.count){
          next = false;
       }else{
          next = true;
@@ -112,7 +113,13 @@ router.get('/articles/page/:num', (req, res)=>{
          next : next,
          articles : articles 
       }
-      res.json(result);
+
+      Category.findAll().then(category =>{
+         console.log(result.articles);
+         res.render('admin/articles/page', {result : result, category : category});
+         
+      });
+     
    });
 
 });
