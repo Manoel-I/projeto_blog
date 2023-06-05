@@ -7,21 +7,18 @@ const connection = require("./database/database");
 //controllers
 const categoriesController = require('./categories/CategoriesController');
 const articlesController = require('./articles/ArticlesController');
+const usersController = require('./user/UserController')
 
 //models
 const database = require('./database/database_creation');
 const Article = require('./articles/ArticleModel');
 const Category = require('./categories/CategoryModel');
-
-app.use(express.static('public'));
-
+const User = require('./user/UserModel');
 
 app.set('view engine', 'ejs');
 
 //static 
 app.use(express.static('public'));
-//app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
-
 
 //body parser
 app.use(body_Parser.urlencoded({extended: false}));
@@ -37,7 +34,7 @@ connection
         console.log("error -->", error);
     });
 
-app.use('/', categoriesController, articlesController); // seta os controllers 
+app.use('/', categoriesController, articlesController, usersController); // seta os controllers 
 
 
 app.get('/', (req, res) =>{
