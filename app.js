@@ -2,7 +2,14 @@ const express = require('express');
 const app = express();
 const body_Parser = require('body-parser');
 const connection = require("./database/database");
+const session = require('express-session');
 //const path = require('path');
+
+//Session
+app.use(session({
+    secret: "kfaosodajfigfldld", cookie: {maxAge: 300000000}
+}));
+
 
 //controllers
 const categoriesController = require('./categories/CategoriesController');
