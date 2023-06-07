@@ -7,7 +7,8 @@ const session = require('express-session');
 
 //Session
 app.use(session({
-    secret: "kfaosodajfigfldld", cookie: {maxAge: 300000000}
+    secret: "manoel-esta-estudando-bastante",
+    cookie: {maxAge: 300000000}
 }));
 
 
@@ -88,6 +89,7 @@ app.get('/category/:slug', (req, res)=>{
         },
         include :[{model : Article}]
     }).then(category =>{
+        console.log('categorissssss>>>>>>>>', category.article);
         if(category != undefined){
             Category.findAll().then(categories =>{
                 res.render('index', {article : category.articles , category : categories});
