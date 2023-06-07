@@ -89,7 +89,6 @@ app.get('/category/:slug', (req, res)=>{
         },
         include :[{model : Article}]
     }).then(category =>{
-        console.log('categorissssss>>>>>>>>', category.article);
         if(category != undefined){
             Category.findAll().then(categories =>{
                 res.render('index', {article : category.articles , category : categories});
