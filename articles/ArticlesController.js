@@ -3,9 +3,10 @@ const router = express.Router();
 const Article = require('./ArticleModel');
 const Category = require('../categories/CategoryModel');
 const slugify = require('slugify');
-const { json } = require('sequelize');
+const sequelize = require('sequelize');
+const adminAuth = require('../middleware/adminAuth');
 
-router.get('/admin/articles', (req, res)=>{
+router.get('/admin/articles', adminAuth, (req, res)=>{
    Article.findAll({
       include : [{model : Category}]
    }).then(article =>{
@@ -13,7 +14,7 @@ router.get('/admin/articles', (req, res)=>{
    })
 });
 
-router.get("/admin/articles/new", (req, res)=>{
+router.get("/admin/articles/new", adminAuth, (req, res)=>{
    Category.findAll().then(category =>{
       res.render('admin/articles/new',{category : category});
    });
@@ -58,7 +59,7 @@ router.post('/articles/delete', (req, res) =>{
    }
 });
 
-router.get('/admin/articles/edit/:id', (req , res)=>{
+router.get('/admin/articles/edit/:id', adminAuth, (req , res)=>{
    var id = req.params.id;
    if(isNaN(id)){
       res.redirect("/admin/articles");
@@ -75,7 +76,7 @@ router.get('/admin/articles/edit/:id', (req , res)=>{
 });
 
 
-router.post("/articles/update", (req, res)=>{
+router.post("/articles/update", adminAuth,(req, res)=>{
    var id = req.body.id;
    var title = req.body.title;
    var body = req.body.body;
