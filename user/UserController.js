@@ -8,8 +8,7 @@ const adminAuth = require('../middleware/adminAuth');
 router.get('/admin/users', adminAuth, (req , res) =>{
     User.findAll().then(users => {
         res.render('admin/users/users.ejs', {users : users});
-    });
-    
+    });   
 });
 
 router.get('/admin/users/create', (req, res)=>{
@@ -54,7 +53,6 @@ router.post("/user/delete", (req , res)=>{
           }).then(()=>{
              res.redirect("/admin/users");
           });
- 
        }else{
           res.redirect("/admin/users");
        }
@@ -66,7 +64,6 @@ router.post("/user/delete", (req , res)=>{
 router.get('/users/login', (req, res) =>{
     res.render('admin/users/login');
 });
-
 
 router.post('/authenticate', (req , res)=>{
     var email = req.body.email;
@@ -80,21 +77,23 @@ router.post('/authenticate', (req , res)=>{
         if(user != undefined){
             var correct = bcrypt.compareSync(password, user.password);
             if(correct){
-                console.log("session", req.session);
                 req.session.user = {
                     id : user.id,
                     email : user.email
                 }
-                res.json(req.session.user);
+                res.redirect('/admin/users');
             }else{
                 res.redirect('/users/login');
             }
-
         }else{
             res.redirect('/users/login');
         }
     });
-
 });
+
+router.get('/logout', (req , res) =>{
+    req.session.user = undefined;
+    res.redirect('/');
+})
 
 module.exports = router;
