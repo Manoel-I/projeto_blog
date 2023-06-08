@@ -12,3 +12,10 @@
     top: 10px;
     color: white; 
 }
+
+#nav-item-logout{
+    position: absolute;
+    right:2%;
+    top: 10px;
+    color: white; 
+}
